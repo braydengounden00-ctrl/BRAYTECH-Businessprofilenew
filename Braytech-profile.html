@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRAYTECH Pipeline Solutions - Company Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0a0a0a;
+            --secondary: #1a1a1a;
+            --accent: #0066cc;
+            --accent-light: #0088ff;
+            --text: #ffffff;
+            --text-muted: #888888;
+            --gradient: linear-gradient(135deg, #0066cc 0%, #0088ff 100%);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--primary);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -1px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo span {
+            font-weight: 300;
+            -webkit-text-fill-color: #fff;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(circle at 50% 50%, rgba(0,102,204,0.15) 0%, transparent 50%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(90deg, transparent 95%, rgba(0,102,204,0.1) 95%),
+                linear-gradient(0deg, transparent 95%, rgba(0,102,204,0.1) 95%);
+            background-size: 50px 50px;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            max-width: 900px;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(48px, 8vw, 80px);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+        }
+
+        .hero h1 span {
+            color: var(--accent-light);
+            display: block;
+        }
+
+        .hero-subtitle {
+            font-size: 24px;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .hero-tagline {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+            color: #ccc;
+            line-height: 1.8;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* Section Styling */
+        section {
+            padding: 120px 50px;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .section-header {
+            margin-bottom: 60px;
+        }
+
+        .section-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+            max-width: 100px;
+        }
+
+        h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #ccc;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            padding: 30px;
+            background: var(--secondary);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .stat-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--accent-light);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Image Placeholder Styling */
+        .image-container {
+            position: relative;
+            background: var(--secondary);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 2px dashed rgba(0,102,204,0.3);
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .image-container:hover {
+            border-color: var(--accent);
+            background: rgba(0,102,204,0.05);
+        }
+
+        .image-placeholder {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-muted);
+        }
+
+        .image-icon {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        .image-hint {
+            font-size: 14px;
+            margin-top: 10px;
+            color: var(--accent);
+        }
+
+        /* Services Section */
+        .services {
+            background: var(--secondary);
+            position: relative;
+        }
+
+        .services::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--primary);
+            padding: 50px 40px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0,102,204,0.2);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        .service-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .service-card p {
+    color: #888;
+    line-height: 1.6;
+    font-size: 15px;
+    hyphens: none;
+    word-break: keep-all;
+}
+
+.service-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px;
+    margin-bottom: 15px;
+    font-weight: 600;
+    line-height: 1.3;
+}
+        }
+
+        /* Products Section */
+        .products-showcase {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .product-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            background: var(--secondary);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .product-item:hover {
+            transform: scale(1.02);
+            border-color: var(--accent);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.8) 100%);
+        }
+
+        .product-content {
+            padding: 30px;
+        }
+
+        .product-content h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .product-content p {
+            color: #888;
+            font-size: 15px;
+        }
+
+        .product-tag {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #FFD700;
+color: #000;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 2;
+        }
+
+        /* Why Choose Us */
+        .features-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 25px;
+            align-items: flex-start;
+        }
+
+        .feature-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: rgba(0,102,204,0.2);
+            line-height: 1;
+        }
+
+        .feature-content h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #FFD700;
+}
+        .feature-content p {
+            color: #888;
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--secondary);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0,102,204,0.2) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .contact-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact h2 {
+            margin-bottom: 30px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .contact-item h4 {
+            font-size: 16px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-item p {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        /* Print Styles */
+        @media print {
+            nav { display: none; }
+            .scroll-indicator { display: none; }
+            section { padding: 60px 40px; page-break-inside: avoid; }
+            body { background: white; color: black; }
+            .hero { min-height: 50vh; }
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .about-grid,
+            .services-grid,
+            .products-showcase,
+            .features-list {
+                grid-template-columns: 1fr;
+            }
+            section { padding: 80px 20px; }
+            nav { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">BRAYTECH <span>Pipeline Specialists</span></div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Engineering Excellence <span>in Pipeline Solutions</span></h1>
+            <p class="hero-subtitle">Supply • Fabrication • Installation</p>
+            <p class="hero-tagline">Specialists in thermoplastic and stainless steel piping systems, delivering precision-engineered solutions for industrial infrastructure worldwide.</p>
+        </div>
+        <div class="scroll-indicator">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 5v14M19 12l-7 7-7-7"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="about-grid">
+            <div>
+                <div class="section-header">
+                    <div class="section-label">About Us</div>
+                    <h2>Precision Engineering<br>for Critical Infrastructure</h2>
+                </div>
+                <div class="about-text">
+                    <p>BRAYTECH Pipeline Solutions stands at the forefront of industrial piping technology. With decades of combined expertise, we provide end-to-end solutions that ensure the integrity and efficiency of your fluid handling systems.</p>
+                    <p>From high-grade thermoplastic installations to custom stainless steel fabrications, our team delivers excellence at every stage—from initial design consultation to final installation and commissioning.</p>
+                    <p>We understand that in industries where reliability is non-negotiable, compromise is not an option. That's why leading manufacturers and processing facilities trust BRAYTECH for their most demanding pipeline requirements.</p>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">20+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">4000+</div>
+                        <div class="stat-label">Projects Completed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Quality Assured</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Technical Support</div>
+                    </div>
+                </div>
+            </div>
+            
+           <div class="image-container" style="background:none; border:none; padding:0; overflow:hidden;">
+    <img src="18.jpeg" style="width:100%; height:100%; object-fit:cover;">
+</div>
+    <!-- Services Section -->
+    <section class="services">
+        <div class="section-header">
+            <div class="section-label">Our Services</div>
+            <h2>Comprehensive Pipeline<br>Solutions</h2>
+        </div>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">📦</div>
+                <h3>Material Supply</h3>
+                <p>Direct sourcing of premium thermoplastic pipes, stainless steel fittings, industrial valves, and specialized components from certified manufacturers worldwide.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">⚙️</div>
+                <h3>Custom Fabrication</h3>
+                <p>Precision-engineered spool fabrication, custom tank manufacturing, and bespoke fitting solutions tailored to your exact specifications and industry standards.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">🔧</div>
+                <h3>Installation</h3>
+                <p>Expert installation teams providing complete system integration, welding services, pressure testing, and operational commissioning with full documentation.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products">
+        <div class="section-header">
+            <div class="section-label">Our Products</div>
+            <h2>Industrial-Grade<br>Components</h2>
+        </div>
+        
+        <div class="products-showcase">
+            <div class="product-item">
+                <div class="product-image">
+                    <img src="24.jpeg" style="width:100%; height:100%; object-fit:cover; position:absolute; top:0; left:0;">
+                    <div class="product-tag">Core Product</div>
+                </div>
+                <div class="product-content">
+                    <h3>Thermoplastic Piping Systems</h3>
+                    <p>We supply premium-grade thermoplastic piping systems including HDP, PVC, CPVC, PVDF and Polypropylene, designed to withstand corrosive chemicals and high temperatures for industrial processing plants.</p>
+                </div>
+            </div>
+            
+            <div class="product-item">
+                <div class="product-image">
+                    <img src="23.jpeg" style="width:100%; height:100%; object-fit:cover; position:absolute; top:0; left:0;">
+                    <div class="product-tag">Premium Grade</div>
+                </div>
+                <div class="product-content">
+                    <h3>Stainless Steel Infrastructure</h3>
+                    <p>Our stainless steel 304 and 316L piping systems meet the highest industry standards for food processing, pharmaceuticals, and chemical industries requiring sanitary conditions.</p>
+                </div>
+            </div>
+            
+            <div class="product-item">
+                <div class="product-image">
+                  <img src="21.jpeg" style="width:100%; height:100%; object-fit:cover; position:absolute; top:0; left:0;">                                                                                            <div class="product-tag">Components</div>
+                </div>
+                <div class="product-content">
+                    <h3>Industrial Valves & Fittings</h3>
+                    <p>Comprehensive range of ball valves, butterfly valves, check valves, and custom fittings ensuring precise flow control and system reliability.</p>
+                </div>
+            </div>
+            
+            <div class="product-item">
+                <div class="product-image">
+                    <img src="25.jpeg" style="width:100%; height:100%; object-fit:cover; position:absolute; top:0; left:0;">
+                    <div class="product-tag">Custom Built</div>
+                </div>
+                <div class="product-content">
+                    <h3>Customised Storage Tanks</h3>
+                    <p>Bespoke tank fabrication in thermoplastic and stainless steel, designed to specific capacity, chemical compatibility, and installation requirements.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section id="why-us">
+        <div class="section-header">
+            <div class="section-label">Our Advantage</div>
+            <h2>Why Industry Leaders<br>Choose BRAYTECH</h2>
+        </div>
+        
+        <div class="features-list">
+            <div class="feature-item">
+                <div class="feature-number">01</div>
+                <div class="feature-content">
+                    <h3>Technical Excellence</h3>
+                    <p>Certified welding procedures, rigorous quality control, and adherence to ASME, ISO, and industry-specific standards ensure every installation meets the highest specifications.</p>
+                </div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-number">02</div>
+                <div class="feature-content">
+                    <h3>End-to-End Service</h3>
+                    <p>From initial consultation and material selection through fabrication, installation, and maintenance—we manage your entire pipeline lifecycle.</p>
+                </div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-number">03</div>
+                <div class="feature-content">
+                    <h3>Rapid Response</h3>
+                    <p>Our dedicated project teams ensure quick turnaround times without compromising quality, minimizing downtime for your critical operations.</p>
+                </div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-number">04</div>
+                <div class="feature-content">
+                    <h3>Safety First</h3>
+                    <p>Comprehensive safety protocols, trained personnel, and full compliance with industrial safety standards protect your assets and our team.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact">
+        <div class="contact-content">
+            <div class="section-label" style="justify-content: center;">Get In Touch</div>
+            <h2>Ready to Upgrade<br>Your Pipeline Infrastructure?</h2>
+            <p style="color: #888; font-size: 18px; max-width: 600px; margin: 0 auto;">Contact our engineering team to discuss your project requirements and discover how BRAYTECH can optimize your fluid handling systems.</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <h4>Email</h4>
+                    <p>braytech7@gmail.com</p>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <h4>Phone</h4>
+                    <p>(+27) 71-588-5777</p>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <h4>Location</h4>
+                    <p>KwaZulu-Natal, South Africa</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 BRAYTECH Pipeline Specialists. All rights reserved. | Engineered for Excellence</p>
+    </footer>
+
+</body>
+</html>
